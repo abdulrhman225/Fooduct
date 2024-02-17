@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Fooduct</string>
+    <string name="userName" translatable="false">اسم المحل</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="phone_number" translatable="false">رقم الهاتف</string>
+    <string name="LogIn" translatable="false">تسجيل الدخول</string>
+    <string name="NewAccount" translatable="false">تسجيل حساب جديد</string>
+    <string name="createNewAccount" translatable="false">أنشاء حساب جديد</string>
+    <string name="see_all" translatable="false">كل المنتجات</string>
+    <string name="verifyCode" translatable="false">أدخل كود التأكيد</string>
+    <string name="send" translatable="false">أرسال الكود</string>
+    <string name="WeSendTheVerifyCode" translatable="false">تم أرسال كود التحقق ال الرقم أدناه</string>
+    <string name="logIn" translatable="false">تسجيل الدخول</string>
+    <string name="signIn" translatable="false">تسجيل حساب جديد</string>
+    <string name="sectionName" translatable="false">أسم القطاع</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

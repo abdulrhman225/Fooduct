@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <EditText
+        android:id="@+id/custom_change_changeUserPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Old Text"
+        android:layout_margin="@dimen/_14sdp"
+        android:padding="@dimen/_14sdp"
+        android:background="@drawable/card_background"/>
+
+</LinearLayout>

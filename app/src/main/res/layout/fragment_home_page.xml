@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.HomePage">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:padding="@dimen/_8sdp"
+                android:background="@drawable/user_background"
+                android:id="@+id/rlrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/Main_UserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:textColor="@color/heatWhite"
+                    android:text="@string/userName"
+                    android:textSize="@dimen/_24sdp" />
+
+                <TextView
+                    android:id="@+id/Main_phoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Main_UserName"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:textColor="@color/heatWhite"
+                    android:text="@string/phone_number"
+                    android:textSize="@dimen/_14sdp" />
+
+
+
+                <ImageButton
+                    android:id="@+id/Main_AdminPage"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/heatYellow"
+                    android:src="@drawable/ic_baseline_admin_panel_settings_24" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/blank"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_below="@+id/rlrl"
+                android:background="@color/heatYellow"
+                android:layout_marginTop="@dimen/_30sdp"
+                />
+
+            <TextView
+                android:id="@+id/Main_first_Section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlrl"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_toLeftOf="@id/blank"
+                android:text="مكسرات"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/see_all_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlrl"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/see_all"
+                android:textColor="#002AFF"
+                android:textSize="@dimen/_14sdp" />
+
+            <HorizontalScrollView
+                android:id="@+id/first_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Main_first_Section">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/Main_First_pro_1"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_Second_pro_1"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_third_pro_1"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_forth_pro_1"
+                        layout="@layout/custom_product" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+            <TextView
+                android:id="@+id/blank1"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_below="@+id/first_section"
+                android:background="@color/heatYellow"
+                android:layout_marginTop="@dimen/_30sdp"
+                />
+
+            <TextView
+                android:id="@+id/Main_second_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/first_section"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:text="مشروبات غازية"
+                android:textSize="@dimen/_20sdp"
+                android:layout_toLeftOf="@id/blank1"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/see_all_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/first_section"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/see_all"
+                android:textColor="#002AFF"
+                android:textSize="@dimen/_14sdp" />
+
+            <HorizontalScrollView
+                android:id="@+id/second_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Main_second_section">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/Main_First_pro_2"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_Second_pro_2"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_third_pro_2"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_forth_pro_2"
+                        layout="@layout/custom_product" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/blank2"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_below="@+id/second_section"
+                android:background="@color/heatYellow"
+                android:layout_marginTop="@dimen/_30sdp"
+                />
+
+            <TextView
+                android:id="@+id/Main_Third_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/second_section"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:text="مثلجات"
+                android:textSize="@dimen/_20sdp"
+                android:layout_toLeftOf="@id/blank2"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/see_all_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/second_section"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/see_all"
+                android:textColor="#002AFF"
+                android:textSize="@dimen/_14sdp" />
+
+            <HorizontalScrollView
+                android:id="@+id/Third_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Main_Third_section">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/Main_First_pro_3"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_Second_pro_3"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_third_pro_3"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_forth_pro_3"
+                        layout="@layout/custom_product" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/blank3"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_below="@+id/Third_section"
+                android:background="@color/heatYellow"
+                android:layout_marginTop="@dimen/_30sdp"
+                />
+
+            <TextView
+                android:id="@+id/Main_forth_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Third_section"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:text="توابل"
+                android:textSize="@dimen/_20sdp"
+                android:layout_toLeftOf="@+id/blank3"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/see_all_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Third_section"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="@string/see_all"
+                android:textColor="#002AFF"
+                android:textSize="@dimen/_14sdp" />
+
+            <HorizontalScrollView
+                android:id="@+id/forth_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Main_forth_section">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/Main_First_pro_4"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_Second_pro_4"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_third_pro_4"
+                        layout="@layout/custom_product" />
+
+                    <include
+                        android:id="@+id/Main_forth_pro_4"
+                        layout="@layout/custom_product" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+            <Button
+                android:id="@+id/Main_finish_ordering"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forth_section"
+                android:layout_margin="@dimen/_8sdp"
+                android:text="أنتهيت"
+                android:textSize="@dimen/_16sdp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>

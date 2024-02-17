@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/heatWhite"
+    tools:context=".Ui.Setting">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rlrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:padding="@dimen/_8sdp"
+            android:background="@drawable/card_background">
+
+
+            <TextView
+                android:id="@+id/Main_UserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_7sdp"
+                android:text="@string/userName"
+                android:textColor="#302D2D"
+                android:textSize="@dimen/_24sdp" />
+
+            <TextView
+                android:id="@+id/Main_phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Main_UserName"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/phone_number"
+                android:textColor="#232121"
+                android:textSize="@dimen/_14sdp" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:id="@+id/Setting_ChangeUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_background"
+            android:layout_below="@+id/rlrl"
+            android:text="تغيير اسم المحل"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_18sdp"
+            />
+
+
+        <TextView
+            android:id="@+id/Setting_logOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Setting_ChangeUserName"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/card_background"
+            android:padding="@dimen/_10sdp"
+            android:text="تسجيل الخروج"
+            android:textSize="@dimen/_18sdp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

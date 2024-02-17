@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/Home_Page"
+        android:title="الصفحة الرئيسة"
+        android:icon="@drawable/ic_baseline_home_24"
+        app:showAsAction="always"/>
+
+
+    <item android:id="@+id/Search_Page"
+        android:title="بحث"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/Settings_Page"
+        android:title="الأعدادات"
+        android:icon="@drawable/ic_baseline_settings_24"
+        app:showAsAction="always"/>
+
+
+
+
+
+
+
+</menu>

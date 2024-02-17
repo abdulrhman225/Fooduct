@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/heatWhite"
+    android:gravity="center_horizontal"
+    tools:context=".Ui.VerifyActivity">
+
+    <ImageView
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_230sdp"
+        android:src="@drawable/fooduct2"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center"
+        android:textSize="@dimen/_12sdp"
+        android:text="@string/WeSendTheVerifyCode"/>
+
+    <TextView
+        android:id="@+id/verifyActivity_PhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColor="#033F9A"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/LoginStyel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/verifyCode"
+        android:padding="@dimen/_10sdp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:minHeight="@dimen/_40sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/Login_makeNewAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تغيير رقم الهاتف"
+        android:layout_gravity="right"
+        android:layout_margin="@dimen/_10sdp"
+        android:textColor="#005AFF"/>
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send"
+ />
+
+
+
+</LinearLayout>
