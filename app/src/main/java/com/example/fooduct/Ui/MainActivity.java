@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null || !user.isEmailVerified() && !user.getPhoneNumber().isEmpty()) {
+        if (user == null ||  user.getPhoneNumber().isEmpty()) {
             Intent intent = new Intent(MainActivity.this, LogInActivity.class);
             startActivity(intent);
         } else {

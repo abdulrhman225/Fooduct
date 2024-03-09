@@ -1,6 +1,7 @@
 package com.example.fooduct.Ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -9,7 +10,9 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.fooduct.R;
 import com.example.fooduct.databinding.ActivityRegisterBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,13 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-        binding.Reload.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                binding.Reload.setRefreshing(false);
-                CheckIfAccountVerified();
-            }
-        });
+
 
         binding.Register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +59,18 @@ public class RegisterActivity extends AppCompatActivity {
                 Registration();
             }
         });
+
+
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null &&  !user.getPhoneNumber().isEmpty()) {
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(this, mAuth.getCurrentUser().getPhoneNumber() + " ", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        CheckIfAccountVerified();
-    }
 
     public void Registration() {
         email = binding.RegisterEmail.getText().toString();
@@ -77,6 +79,12 @@ public class RegisterActivity extends AppCompatActivity {
         PhoneNumber = binding.RegisterPhoneNumber.getText().toString();
         Number = ("+962") + PhoneNumber;
         mAuth = FirebaseAuth.getInstance();
+
+        AlertDialog.Builder d = new AlertDialog.Builder(RegisterActivity.this)
+                .setView(R.layout.progress_dialog);
+
+        AlertDialog dia = d.create();
+        dia.show();
 
         if (email.isEmpty()) {
             binding.RegisterEmail.setError("The Email Is Required");
@@ -125,15 +133,14 @@ public class RegisterActivity extends AppCompatActivity {
                                         public void onVerificationFailed(@NonNull FirebaseException e) {
                                             // This callback is invoked in an invalid request for verification is made,
                                             // for instance if the the phone number format is not valid.
-                                            binding.RegisterPhoneNumber.setError(e.toString());
+                                            binding.RegisterPhoneNumber.setError(e.getMessage());
                                         }
 
                                         @Override
                                         public void onCodeSent(@NonNull String verificationId,
                                                                @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                                            // The SMS verification code has been sent to the provided phone number, we
-                                            // now need to ask the user to enter the code and then construct a credential
-                                            // by combining the code with a verification ID.
+
+                                            dia.dismiss();
 
                                             // Save verification ID and resending token so we can use them later
                                             Intent intent = new Intent(RegisterActivity.this, VerifyActivity.class);
@@ -156,13 +163,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     PhoneAuthProvider.verifyPhoneNumber(options);
                                 }
 
-                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                        }
-                                    }
-                                });
                             }
                         });
                     }
@@ -174,21 +174,5 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public void CheckIfAccountVerified() {
-        mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null) {
-            mAuth.getCurrentUser().reload().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        if (mAuth.getCurrentUser().isEmailVerified()) {
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    }
-                }
-            });
-        }
-    }
 
 }

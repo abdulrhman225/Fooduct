@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.fooduct.R;
 import com.example.fooduct.databinding.ActivityVerifyBinding;
@@ -42,11 +45,29 @@ public class VerifyActivity extends AppCompatActivity {
         binding.btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(VerifyActivity.this)
+                        .setView(R.layout.progress_dialog);
+
+                AlertDialog dia = builder.create();
+
+                dia.show();
+
+
                 if(!binding.etCod.getText().toString().isEmpty()) {
                     String code = binding.etCod.getText().toString();
                     credential = PhoneAuthProvider.getCredential(verificationId, code);
                     mAuth.getCurrentUser().updatePhoneNumber(credential);
-                    finish();
+
+                    while(mAuth.getCurrentUser().getPhoneNumber() == null);
+
+                    dia.dismiss();
+
+                    Intent in = new Intent(VerifyActivity.this , MainActivity.class);
+                    startActivity(in);
+                }
+                else{
+                    dia.dismiss();
+                    binding.etCod.setError("You have to put the code to continue....");
                 }
             }
         });
@@ -110,5 +131,11 @@ public class VerifyActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public AlertDialog WaitingDialog (){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setView(R.layout.progress_dialog);
+        return builder.create();
     }
 }

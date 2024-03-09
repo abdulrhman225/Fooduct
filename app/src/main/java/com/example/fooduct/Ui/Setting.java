@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.fooduct.databinding.FragmentSearchBinding;
 import com.example.fooduct.databinding.FragmentSettingBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,7 @@ public class Setting extends Fragment {
     FragmentSettingBinding binding;
     ChangeUserNameListener userNameListener;
     logOutListener logOut;
+    FirebaseAuth mAuth;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,6 +80,15 @@ public class Setting extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSettingBinding.inflate(inflater , container , false);
         View view = binding.getRoot();
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user == null) throw new AssertionError();
+        String phoneNumber = user.getPhoneNumber().replace("+962" , "0");
+
+        binding.MainUserName.setText(user.getDisplayName());
+        binding.MainPhoneNumber.setText(phoneNumber);
 
         binding.SettingChangeUserName.setOnClickListener(new View.OnClickListener() {
             @Override
