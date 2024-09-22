@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +42,10 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 
@@ -93,10 +98,20 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null ||  user.getPhoneNumber().isEmpty()) {
+        if (user == null) {
             Intent intent = new Intent(MainActivity.this, LogInActivity.class);
             startActivity(intent);
-        } else {
+        }
+
+        else if(Objects.equals(user.getEmail(), "admin@gmail.com")){
+            replaceFragment(new HomePage());
+        }
+//
+//        else if(user.getPhoneNumber().isEmpty()){
+//            Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+//            startActivity(intent);
+//        }
+        else{
             replaceFragment(new HomePage());
         }
     }
@@ -109,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
     }
 
 
-    public void custom_dialog() {
+    public void custom_dialog(String productImage , String productName, String productPrice) {
         View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog, null, false);
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setView(view);
@@ -123,7 +138,12 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
 
         View view1 = view.findViewById(R.id.custom_dialog_pro);
         TextView tv_pro_Name = (TextView) view1.findViewById(R.id.Product_Name);
+        ImageView iv_pro_Image = (ImageView) view1.findViewById(R.id.Product_Image);
+        TextView tv_pro_price = (TextView) view1.findViewById(R.id.Product_Price);
 
+        tv_pro_Name.setText(productName);
+        Picasso.get().load(productImage).into(iv_pro_Image);
+        tv_pro_price.setText(productPrice);
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,10 +214,7 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
     }
 
 
-    @Override
-    public void onClick() {
-        custom_dialog();
-    }
+
 
 
     @Override
@@ -226,8 +243,9 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
     public void FilterList(String newText, ArrayList<All_Pro_same_section> proSameSections) {
         ArrayList<All_Pro_same_section> items = new ArrayList<>();
         for (All_Pro_same_section i : proSameSections) {
-            if (i.getProName().toLowerCase().contains(newText.toLowerCase()))
+            if (i.getProName().contains(newText))
                 items.add(i);
+
         }
 
         if (items.isEmpty()) {
@@ -238,23 +256,19 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
     }
 
     public void setUpRecyclerView(ArrayList<All_Pro_same_section> products) {
-        products = new ArrayList<>();
 
         Custom_See_All_Adapter seeAll = new Custom_See_All_Adapter(products, new OnClickListener() {
             @Override
             public void onItemClick(int position) {
-                custom_dialog();
+                custom_dialog(products.get(position).getImage() , products.get(position).getProName() , products.get(position).getProPrice());
             }
         });
         Search.rv.setAdapter(seeAll);
-        Search.rv.setLayoutManager(new LinearLayoutManager(this));
+        Search.rv.setLayoutManager(new GridLayoutManager(this , 2));
         Search.rv.setHasFixedSize(true);
     }
 
-    @Override
-    public void listener(int position) {
-        custom_dialog();
-    }
+
 
     @Override
     public void changeUserName() {
@@ -308,5 +322,15 @@ public class MainActivity extends AppCompatActivity implements HomePage.OnClickL
         AlertDialog dialog = builder.create();
         dialog.show();
 
+    }
+
+    @Override
+    public void listener(String productImage, String productName, String productPrice) {
+        custom_dialog(productImage , productName , productPrice);
+    }
+
+    @Override
+    public void onClick(String productImage, String productName, String productPrice) {
+        custom_dialog(productImage , productName ,productPrice);
     }
 }

@@ -6,12 +6,16 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fooduct.Model.getProductData;
 import com.example.fooduct.Orders.All_Pro_same_section;
 import com.example.fooduct.Orders.Custom_See_All_Adapter;
 import com.example.fooduct.Orders.OnClickListener;
@@ -29,6 +33,8 @@ public class Search extends Fragment {
     onChangeListener changeListener;
     adapterListener listener;
     public static RecyclerView rv;
+    getProductData productData = new getProductData() ;
+
     ArrayList<All_Pro_same_section> proSameSections;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -89,12 +95,26 @@ public class Search extends Fragment {
 
         proSameSections = new ArrayList<>();
 
-        Custom_See_All_Adapter adapter = new Custom_See_All_Adapter(proSameSections, new OnClickListener() {
+        productData = new ViewModelProvider(this).get(getProductData.class);
+        productData.getAllData();
+        productData.mutableLiveData.observe(getViewLifecycleOwner(), new Observer<ArrayList<All_Pro_same_section>>() {
             @Override
-            public void onItemClick(int position) {
-                listener.listener(position);
+            public void onChanged(ArrayList<All_Pro_same_section> allProSameSections) {
+                proSameSections = allProSameSections;
+                Custom_See_All_Adapter adapter = new Custom_See_All_Adapter(proSameSections, new OnClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        listener.listener(proSameSections.get(position).getImage() , proSameSections.get(position).getProName() , proSameSections.get(position).getProPrice());
+                    }
+                });
+
+
+                binding.searchViewRv.setAdapter(adapter);
+                binding.searchViewRv.setLayoutManager(new GridLayoutManager(getContext() ,2));
+                binding.searchViewRv.setHasFixedSize(true);
             }
         });
+
 
 
         binding.SearchViewSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -119,6 +139,6 @@ public class Search extends Fragment {
     }
 
     public interface adapterListener{
-        void listener(int position);
+        void listener(String productImage , String productName, String productPrice);
     }
 }

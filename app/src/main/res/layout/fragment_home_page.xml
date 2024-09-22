@@ -74,7 +74,7 @@
                 android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginRight="@dimen/_8sdp"
                 android:layout_toLeftOf="@id/blank"
-                android:text="مكسرات"
+                android:text="خضروات"
                 android:textSize="@dimen/_20sdp"
                 android:textStyle="bold" />
 
@@ -140,7 +140,7 @@
                 android:layout_below="@+id/first_section"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:text="مشروبات غازية"
+                android:text="فواكه"
                 android:textSize="@dimen/_20sdp"
                 android:layout_toLeftOf="@id/blank1"
                 android:textStyle="bold" />
@@ -206,7 +206,7 @@
                 android:layout_below="@+id/second_section"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:text="مثلجات"
+                android:text="توابل"
                 android:textSize="@dimen/_20sdp"
                 android:layout_toLeftOf="@id/blank2"
                 android:textStyle="bold" />
@@ -272,7 +272,7 @@
                 android:layout_below="@+id/Third_section"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:text="توابل"
+                android:text="لحوم"
                 android:textSize="@dimen/_20sdp"
                 android:layout_toLeftOf="@+id/blank3"
                 android:textStyle="bold" />

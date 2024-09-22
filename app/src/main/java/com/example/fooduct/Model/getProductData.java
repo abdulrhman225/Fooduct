@@ -26,7 +26,7 @@ public class getProductData extends ViewModel {
 
 
     public void getNutsData(){
-        mRef.child("products").child("nuts").addValueEventListener(new ValueEventListener() {
+            mRef.child("products").child("nuts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data.clear();
@@ -59,6 +59,75 @@ public class getProductData extends ViewModel {
 
                     All_Pro_same_section pro = new All_Pro_same_section(nutsImage , nutsName , nutsPrice);
                     data.add(pro);
+                }
+                mutableLiveData.setValue(data);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+ public void getSpiceData(){
+        mRef.child("products").child("spice").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.clear();
+                for(DataSnapshot snap : snapshot.getChildren()){
+                    String nutsName = snap.child("name").getValue().toString();
+                    String nutsPrice = snap.child("price").getValue().toString();
+                    String nutsImage = snap.child("image").getValue().toString();
+
+                    All_Pro_same_section pro = new All_Pro_same_section(nutsImage , nutsName , nutsPrice);
+                    data.add(pro);
+                }
+                mutableLiveData.setValue(data);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+ public void getMeatData(){
+        mRef.child("products").child("meat").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.clear();
+                for(DataSnapshot snap : snapshot.getChildren()){
+                    String nutsName = snap.child("name").getValue().toString();
+                    String nutsPrice = snap.child("price").getValue().toString();
+                    String nutsImage = snap.child("image").getValue().toString();
+
+                    All_Pro_same_section pro = new All_Pro_same_section(nutsImage , nutsName , nutsPrice);
+                    data.add(pro);
+                }
+                mutableLiveData.setValue(data);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void getAllData(){
+        mRef.child("products").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.clear();
+                for(DataSnapshot sectionSnapShot : snapshot.getChildren()){
+                    for(DataSnapshot productSnapShot : sectionSnapShot.getChildren()){
+                        String nutsName = productSnapShot.child("name").getValue().toString();
+                        String nutsPrice = productSnapShot.child("price").getValue().toString();
+                        String nutsImage = productSnapShot.child("image").getValue().toString();
+
+                        All_Pro_same_section pro = new All_Pro_same_section(nutsImage , nutsName , nutsPrice);
+                        data.add(pro);
+                    }
                 }
                 mutableLiveData.setValue(data);
             }

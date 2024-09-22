@@ -34,4 +34,8 @@ public class All_Pro_same_section {
         ProName = proName;
         ProPrice = proPrice;
     }
+
+    public  All_Pro_same_section(){
+
+    }
 }

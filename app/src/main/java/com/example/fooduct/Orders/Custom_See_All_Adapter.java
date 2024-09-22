@@ -37,7 +37,7 @@ public class Custom_See_All_Adapter extends RecyclerView.Adapter<Custom_See_All_
         All_Pro_same_section all_pro_same_section = all_Pro.get(position);
         Picasso.get().load(all_pro_same_section.Image).into(holder.iv);
         holder.tv_pro_Name.setText(all_pro_same_section.ProName);
-        holder.tv_pro_price.setText(all_pro_same_section.ProPrice);
+        holder.tv_pro_price.setText(all_pro_same_section.ProPrice+"$");
         holder.iv.setTag(position);
 
 
